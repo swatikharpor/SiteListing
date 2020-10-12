@@ -1,0 +1,47 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2>Add Domain Details</h2>
+    <span class="material-icons cursor" (click)="close()">close</span>
+  </div>
+  <form class="new-site-form" [formGroup]="siteDetailsForm">
+    <div class="new-site-field-container">
+      <div class="new-site-field">
+        <label>Domain name*</label>
+        <input type="text" id="domain" name ="domain" formControlName="domain">
+        <div *ngIf="siteDetailsForm.controls.domain.touched  && siteDetailsForm.controls.domain.hasError('required')" class="error">
+          Domain is required.
+        </div>
+        <div *ngIf="siteDetailsForm.controls.domain.touched && siteDetailsForm.controls.domain.hasError('pattern')" class="error">
+          Invalid domain.
+        </div>
+      </div>
+    </div>
+    <div class="new-site-field-container">
+      <div  class="new-site-field">
+        <label>Storage*</label>
+        <input type="text" id="storage" formControlName="storage">
+      </div>
+    </div>
+    <div class="new-site-field-container">
+      <div class="new-site-field">
+        <label>Monthly Visitor*</label>
+        <input type="text" id="monthlyVisitors" formControlName="monthlyVisitors">
+      </div>
+    </div>
+    <div class="new-site-field-container" formArrayName="subdomain"
+         *ngFor="let subDomain of siteDetailsForm['controls'].subdomain['controls']; let i = index">
+      <div class="new-site-field" formGroupName="{{i}}">
+        <label>Subdomain {{i + 1}}</label>
+        <input type="text" id="name"  formControlName="name">
+      </div>
+    </div>
+  </form>
+  <div class="add-new-button-container">
+    <button type="button" class="cursor" (click)="addNewSubDomain()">Add More</button>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="secondary cursor" (click)="close()">Close</button>
+    <button type="button" class="primary cursor" (click)="submit()" [disabled]="siteDetailsForm.invalid" [ngClass]="{'disabled': siteDetailsForm.invalid}">Save Changes</button>
+  </div>
+</div>

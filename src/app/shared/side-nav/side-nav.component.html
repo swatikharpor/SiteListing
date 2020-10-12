@@ -1,0 +1,45 @@
+<div class="side-nav-container">
+  <div class="side-nav-user-container">
+    <div class="side-nav-user-image">
+      <img src="../../../assets/images/user-image.jpg"/>
+    </div>
+    <div class="side-nav-user-details">
+      <div class="side-nav-user-name">
+        <span>Jane Doe</span>
+        <span class="material-icons cursor">keyboard_arrow_down</span>
+      </div>
+      <span>emailaddress@email.com</span>
+    </div>
+
+  </div>
+  <nav class="side-nav-link-container" [ngClass]="{'active': activeNavigation.toLowerCase() === 'dashboard'}">
+    <a class="nav-links cursor">
+      <span class="material-icons">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'sitedetails'}">
+      <span class="material-icons">web</span>
+      <span>Site Details</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'migrations'}">
+      <span class="material-icons">storage</span>
+      <span>Migrations</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'backups'}">
+      <span class="material-icons">backup</span>
+      <span>Backups</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'collaborators'}">
+      <span class="material-icons">group_work</span>
+      <span>Collaborators</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'supporttickets'}">
+      <span class="material-icons">note</span>
+      <span>Support Tickets</span>
+    </a>
+    <a class="nav-links cursor" [ngClass]="{'active': activeNavigation.toLowerCase() === 'opennewticket'}">
+      <span class="material-icons">note_add</span>
+      <span>Open New Ticket</span>
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,106 @@
+{
+  "sites": [
+    {
+      "id": 1,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "50gb",
+      "domainTag": "Primary",
+      "availableDomains": 10,
+      "usedDomains": 4,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 700,
+      "plan": "Professional Plan",
+      "subdomain": [
+        {
+          "id": 11,
+          "name": "abc.xyz.com",
+          "usedStorage": "10gb",
+          "storage": "100gb",
+          "domainTag": "Staging",
+          "montlyVisitor": 7000,
+          "monthlyVisitorCapacity": 10000,
+          "status": "Active"
+        },
+        {
+          "id": 12,
+          "name": "adef.xyz.com",
+          "usedStorage": "40gb",
+          "storage": "100gb",
+          "domainTag": "Add On",
+          "montlyVisitor": 1100
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "50gb",
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 2000,
+      "plan": "Professional Plan"
+    },
+    {
+      "id": 3,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "50gb",
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 2000,
+      "plan": "Professional Plan"
+    },
+    {
+      "id": 4,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "80gb",
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 5000,
+      "plan": "Professional Plan"
+    },
+    {
+      "domain": "geeksforgeeks.org",
+      "storage": "1332",
+      "subdomain": [
+        {
+          "name": "admin.geeksforgeeks.com"
+        },
+        {
+          "name": "admin1.geeksforgeeks.com"
+        }
+      ],
+      "monthlyVisitors": "13415",
+      "id": 5
+    },
+    {
+      "domain": "geeksforgeeks.org",
+      "storage": "1332",
+      "subdomain": [
+        {
+          "name": "admin.geeksforgeeks.com"
+        },
+        {
+          "name": "admin11.geeksforgeeks.com"
+        }
+      ],
+      "monthlyVisitors": "13415",
+      "id": 6
+    }
+  ]
+}

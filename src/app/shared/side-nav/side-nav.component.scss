@@ -1,0 +1,52 @@
+@import '../../../assets/variables';
+
+.side-nav-container {
+  background-color: $primary_blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  color: $white;
+  align-items: center;
+
+  .side-nav-user-container {
+    margin-bottom: 50px;
+    .side-nav-user-image {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+
+      img {
+        width: 100px;
+        border-radius: 50%;
+      }
+    }
+    .side-nav-user-details {
+      padding: 0 30px;
+      .side-nav-user-name {
+        display: flex;
+
+        justify-content: center;
+      }
+    }
+  }
+
+  .side-nav-link-container {
+    width: 100%;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      padding: 10px 30px;
+      &.active{
+        background-color: $primary_active_blue;
+      }
+
+      span {
+        padding: 10px;
+      }
+    }
+    .nav-links:hover{
+      background-color: $primary_active_blue;
+    }
+  }
+}

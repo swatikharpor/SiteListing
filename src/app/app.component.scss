@@ -1,0 +1,10 @@
+.main-container{
+  display: flex;
+  height: 100%;
+  .main-side-nav{
+    flex-grow: 1;
+  }
+  .main-component{
+    flex-grow: 10;
+  }
+}

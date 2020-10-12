@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/variables';
+
+html{
+  margin: 0;
+}
+body{
+  height: 100%;
+  margin: 0;
+  .cursor{
+    cursor: pointer;
+  }
+  button{
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .error{
+    font-size: 10px;
+    color: $primary_red;
+  }
+
+ }
+
+

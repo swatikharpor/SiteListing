@@ -1,0 +1,148 @@
+<div class="dashboard-container">
+  <div class="dashboard-width-container">
+    <div class="dashboard-header-container">
+      <h3 class="dashboard-header">Site Details</h3>
+      <div class="dashboard-button-container">
+        <button class="new-site-button cursor" (click)="openModal()">
+          <span class="material-icons">add</span>
+          Add New Site
+        </button>
+      </div>
+    </div>
+    <div class="dashboard-filter-container">
+      <span>Show</span>
+      <div class="page-size">
+        <span>{{pageSize}}</span>
+        <div class="page-size-arrow">
+          <button class="material-icons cursor" (click)="changePageSize('inc')" [disabled]="pageSize>=initialDomainList.length">keyboard_arrow_up</button>
+          <button class="material-icons cursor"  (click)="changePageSize('desc')" [disabled]="pageSize=== 3">keyboard_arrow_down</button>
+        </div>
+      </div>
+      <span>Entries</span>
+      <div class="search">
+        <span class="material-icons">search</span>
+        <input type="text" placeholder="Search Records" [(ngModel)]="searchTerm" (ngModelChange)="search()">
+      </div>
+    </div>
+    <div class="dashboard-table-header-container">
+      <div class="dashboard-table-header">
+        <span>Domain & Plain name</span>
+      </div>
+      <div class="dashboard-table-header">
+        <span>Storage</span>
+      </div>
+      <div class="dashboard-table-header">
+        <span>Monthly Visitors</span>
+      </div>
+      <div class="dashboard-table-header">
+        <span>Domains</span>
+      </div>
+      <div class="dashboard-table-header">
+        <span>Status</span>
+      </div>
+    </div>
+    <ng-container *ngIf="domainList; else noDomain">
+      <div *ngFor="let domain of domainList" class="dashboard-table-data-container">
+        <div class="dashboard-table-data-domain-container">
+          <div class="dashboard-table-data additional-data">
+            <span>{{domain.domain}}</span>
+            <div class="domain-plan">
+              <span class="material-icons">check_circle</span>
+              <span>{{domain.plan}}</span>
+            </div>
+
+          </div>
+          <div class="dashboard-table-data additional-data">
+            <div class="domain-total-storage" *ngIf="domain.usedStorage && domain.storage; else noData">
+              <div class="domain-used-storage" [style.width]="calculateUsedStoragePercentage(domain.usedStorage, domain.storage)+'%'" >
+              </div>
+            </div>
+            <div *ngIf="domain.usedStorage && domain.storage">
+              <span class="text-spacing">{{domain.usedStorage }}</span>
+              <span class="text-spacing">of</span>
+              <span class="text-spacing">{{domain.storage}}</span>
+            </div>
+          </div>
+          <div class="dashboard-table-data additional-data">
+            <div class="monthly-visitor-container">
+              <div *ngIf="domain.montlyVisitor && domain.monthlyVisitorCapacity">{{domain.montlyVisitor}}</div>
+              <div class="domain-total-storage" *ngIf="domain.montlyVisitor && domain.monthlyVisitorCapacity; else noData">
+                <div class="domain-used-storage"
+                     [style.width]="calculateVisitorPercentage(domain.montlyVisitor, domain.monthlyVisitorCapacity)+'%'"
+                     [style.background-color]="getVisitorRangeColor(domain.montlyVisitor)">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="dashboard-table-data">
+            <div>
+              <div class="domain-available"
+                   [ngStyle]="{'background-image':getBackgroundImageValue(domain.usedDomains,domain.availableDomains)}"
+                   *ngIf="domain.usedDomains && domain.availableDomains; else noData" >
+                <div class="domain-used">
+                  <span>{{domain.usedDomains}}</span>
+                  <span>/</span>
+                  <span>{{domain.availableDomains}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-table-data">
+          <span class="curved-corner-box"
+                [ngClass]="domain.status? domain.status.toLowerCase() === 'active' ? 'active':'inactive':''">{{domain.status}}</span>
+          </div>
+        </div>
+        <div *ngIf="domain.subdomain" class="subdomain-container">
+          <div *ngFor="let subdomain of domain.subdomain " class="dashboard-table-data-domain-container subdomain-table">
+            <div class="dashboard-table-data additional-data">
+              <span>{{subdomain.name}}</span>
+            </div>
+            <div class="dashboard-table-data additional-data">
+              <div class="domain-total-storage" *ngIf="subdomain.montlyVisitor && subdomain.monthlyVisitorCapacity">
+                <div class="domain-used-storage"
+                     [style.width]="calculateUsedStoragePercentage(subdomain.usedStorage, subdomain.storage)+'%'">
+                </div>
+              </div>
+              <div *ngIf="subdomain.usedStorage && subdomain.storage">
+                <span class="text-spacing">{{subdomain.usedStorage }}</span>
+                <span class="text-spacing">of</span>
+                <span class="text-spacing">{{subdomain.storage}}</span>
+              </div>
+            </div>
+            <div class="dashboard-table-data additional-data">
+              <div class="monthly-visitor-container" *ngIf="subdomain.montlyVisitor && subdomain.monthlyVisitorCapacity">
+                <div>{{subdomain.montlyVisitor}}</div>
+                <div class="domain-total-storage" *ngIf="subdomain.montlyVisitor && subdomain.monthlyVisitorCapacity" >
+                  <div class="domain-used-storage"
+                       [style.width]="calculateVisitorPercentage(subdomain.montlyVisitor, subdomain.monthlyVisitorCapacity)+'%'"
+                       [style.background-color]="getVisitorRangeColor(subdomain.montlyVisitor)">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="dashboard-table-data">
+              <span class="curved-corner-box" [ngClass]="getDomainTagClassName(subdomain.domainTag)">{{subdomain.domainTag}}</span>
+            </div>
+            <div class="dashboard-table-data">
+                  <span class="curved-corner-box"
+                        [ngClass]="subdomain.status? subdomain.status.toLowerCase() === 'active' ? 'active':'inactive':''">{{subdomain.status}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noDomain>
+      <p>No domain available</p>
+    </ng-template>
+    <ng-template #noData>
+      <p>NA</p>
+    </ng-template>
+  </div>
+</div>
+<div class="new-site" id="add-new-site">
+  <app-add-new-site (closeEventEmitter)="close()" (submitEventEmitter)="submit($event)"></app-add-new-site>
+</div>
+

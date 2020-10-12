@@ -1,0 +1,89 @@
+@import '../../../assets/variables';
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 80%;
+
+  .modal-header {
+    border-bottom: 1px solid $neutral_grey_4;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .new-site-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    .new-site-field-container {
+      width: 50%;
+
+      .new-site-field {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        input {
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  .add-new-button-container {
+    width: 80%;
+    margin: auto;
+
+    button {
+      padding: 20px;
+      margin: 20px;
+      border-radius: 5px;
+      width: 200px;
+      border: 1px solid $neutral_grey_4;
+    }
+  }
+
+  .modal-footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $neutral_grey_4;
+
+    button {
+      padding: 20px;
+      margin: 20px;
+      border-radius: 5px;
+      width: 200px;
+
+      &.primary {
+        background-color: $primary_active_blue;
+        color: $white;
+
+        &.disabled {
+          background-color: $disabled;
+        }
+
+        &.primary:hover {
+          background-color: $hover-blue;
+        }
+
+        &.disabled:hover {
+          background-color: $disabled;
+        }
+      }
+
+      &.secondary {
+        border: 1px solid $neutral_grey_4;
+      }
+
+      &.secondary:hover {
+        background-color: $hover-white;
+      }
+    }
+  }
+}
